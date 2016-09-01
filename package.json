@@ -1,0 +1,16 @@
+{
+  "name": "bitcoin-tracker",
+  "version": "0.0.1",
+  "description": "Bitcoin price tracker.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abdulrahman <bydeinon@gmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.14.0",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.8"
+  }
+}

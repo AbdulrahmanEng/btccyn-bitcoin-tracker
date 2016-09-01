@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bitcoin Tracker</title>
+</head>
+<body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    'use strict';
+    var socket = io();
+
+    socket.on('message-from-server', (evt) => {
+      document.body.appendChild(document.createTextNode(evt.greeting));
+
+      socket.emit('message-from-client', {
+        greeting: 'Hello server'
+      });
+    });
+  </script>
+</body>
+</html>
