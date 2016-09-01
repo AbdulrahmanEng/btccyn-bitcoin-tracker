@@ -3,20 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <title>Bitcoin Tracker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+  <div class="container">
+    <div class="header col-md-12">
+      <div class="row bg-primary">
+        <div class="col-md-4">
+          <h1>Market</h1>
+          <h2 id="market"></h2>
+        </div>
+        <div class="col-md-4">
+          <h1>High</h1>
+          <h2 id="high-count"></h2>
+        </div>
+        <div class="col-md-4">
+          <h1>Low</h1>
+          <h2 id="low-count"></h2>
+        </div>
+      </div>
+    </div>
+    <div class="main col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="text-primary">Recent Trades</h3>
+          <table class="table">
+            <tr>
+              <th>Buy</th>
+              <td>
+              <p id="buy"></p>
+              </td>
+              <th>Sell</th>
+              <td>
+              <p id="sell"></p>
+              </td>
+          </tr>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h3 class="text-primary">Trade Volume</h3>
+          <table class="table">
+            <tr>
+              <th>Volume</th>
+              <td>
+              <p id="volume"></p>
+              </td>
+          </tr>
+          </table>
+        </div>
+    </div>
+    </div>
+  </div>
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     'use strict';
-    var socket = io();
 
-    socket.on('message-from-server', (evt) => {
-      document.body.appendChild(document.createTextNode(evt.greeting));
+    var socket = io('https://websocket.btcchina.com/');
+    socket.emit('subscribe', 'marketdata_cnybtc');
+    socket.on('connect', () => {
+      socket.on('ticker', (data) => {
+        console.log(data);
 
-      socket.emit('message-from-client', {
-        greeting: 'Hello server'
-      });
-    });
+        //Updates market name
+       $('#market').text(data.ticker.market);
+        //Updates market high
+       $('#high-count').text(data.ticker.high);
+        //Updates market low
+       $('#low-count').text(data.ticker.low);
+
+        //Updates market buy
+       $('#buy').text(data.ticker.buy);
+        //Updates market sell
+       $('#sell').text(data.ticker.sell);
+        //Updates market low
+       $('#volume').text(data.ticker.vol);
+      })
+    })
   </script>
 </body>
 </html>
