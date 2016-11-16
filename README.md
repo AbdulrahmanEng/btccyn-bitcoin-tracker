@@ -1,5 +1,7 @@
 # Bitcoin Price Tracker
 
+![Preview](snapshot.png)
+
 ### Requirements
 
 - Node.JS

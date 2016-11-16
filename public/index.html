@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Bitcoin Tracker</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    .bg-primary {
+      background: #F3904F;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(to left, #F3904F, #3B4371);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to left, #F3904F, #3B4371);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
     <div class="header col-md-12">
@@ -31,13 +43,13 @@
             <tr>
               <th>Buy</th>
               <td>
-              <p id="buy"></p>
+                <p id="buy"></p>
               </td>
               <th>Sell</th>
               <td>
-              <p id="sell"></p>
+                <p id="sell"></p>
               </td>
-          </tr>
+            </tr>
           </table>
         </div>
         <div class="col-md-6">
@@ -46,15 +58,15 @@
             <tr>
               <th>Volume</th>
               <td>
-              <p id="volume"></p>
+                <p id="volume"></p>
               </td>
-          </tr>
+            </tr>
           </table>
         </div>
-    </div>
+      </div>
     </div>
   </div>
-  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     'use strict';
@@ -66,20 +78,21 @@
         console.log(data);
 
         //Updates market name
-       $('#market').text(data.ticker.market);
+        $('#market').text(data.ticker.market);
         //Updates market high
-       $('#high-count').text(data.ticker.high);
+        $('#high-count').text(data.ticker.high);
         //Updates market low
-       $('#low-count').text(data.ticker.low);
+        $('#low-count').text(data.ticker.low);
 
         //Updates market buy
-       $('#buy').text(data.ticker.buy);
+        $('#buy').text(data.ticker.buy);
         //Updates market sell
-       $('#sell').text(data.ticker.sell);
+        $('#sell').text(data.ticker.sell);
         //Updates market low
-       $('#volume').text(data.ticker.vol);
+        $('#volume').text(data.ticker.vol);
       })
     })
   </script>
 </body>
+
 </html>
